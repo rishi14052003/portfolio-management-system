@@ -1,0 +1,40 @@
+# Dependency directories
+client/node_modules/
+server/venv/
+server/.venv/
+
+# Build outputs
+client/dist/
+client/dist-ssr/
+
+# Environment files (contains secrets/credentials)
+client/.env
+client/.env.local
+client/.env.*.local
+server/.env
+
+# Python caching and testing
+server/**/__pycache__/
+server/**/*.py[cod]
+server/.pytest_cache/
+
+# Local databases, logs, and generated assets
+# (Ignores files but keeps the directory structure tracked)
+server/app/generated_pdfs/*
+!server/app/generated_pdfs/.gitkeep
+
+server/app/data/*
+!server/app/data/.gitkeep
+
+server/logs/*
+!server/logs/.gitkeep
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
