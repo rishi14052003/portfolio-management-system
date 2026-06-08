@@ -65,21 +65,26 @@ class AirtableService:
         pdf_filename: str,
         pdf_url: str,
     ) -> dict:
-        payload = {
-            'fields': {
-                'Full Name': full_name,
-                'Email': email,
-                'Phone': phone,
-                'Company': company,
-                'Purpose': purpose,
-                'Budget': budget,
-                'Source': source,
-                'Introduction': introduction,
-                'PDF Filename': pdf_filename,
-                'PDF URL': pdf_url,
-                'Email Sent': False,
-            }
+        fields = {
+            'Full Name': full_name,
+            'Email': email,
+            'Phone': phone,
+            'Company': company,
+            'Introduction': introduction,
+            'PDF Filename': pdf_filename,
+            'PDF URL': pdf_url,
+            'Email Sent': False,
         }
+
+        # Single Select fields — only include if non-empty
+        if purpose:
+            fields['Purpose'] = purpose
+        if budget:
+            fields['Budget'] = budget
+        if source:
+            fields['Source'] = source
+
+        payload = {'fields': fields}
 
         logger.info(f'Creating Airtable record for lead: {email}')
         result = self._request('POST', self.base_url, payload)
