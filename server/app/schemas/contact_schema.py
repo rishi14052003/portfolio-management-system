@@ -37,7 +37,7 @@ class ContactSchema(Schema):
     )
     source = fields.Str(
         required=False,
-        validate=validate.OneOf(['LinkedIn', 'GitHub', 'Google Search', 'Referral', 'Other']),
+        validate=validate.OneOf(['LinkedIn', 'GitHub', 'Portfolio Website', 'Google Search', 'Referral', 'Other']),
         allow_none=True
     )
     pdf_filename = fields.Str(
