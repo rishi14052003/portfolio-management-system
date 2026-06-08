@@ -49,17 +49,17 @@ class PDFGenerator:
         self.output_dir = output_dir
         os.makedirs(output_dir, exist_ok=True)
 
-        # Brand palette - Slate & Steel Blue
+        # Brand palette - Corporate Slate & Steel Blue
         self.primary    = colors.HexColor('#0f172a')  # Slate 900
         self.primary_dk = colors.HexColor('#1e293b')  # Slate 800
-        self.accent     = colors.HexColor('#2563eb')  # Blue 600
-        self.accent_lt  = colors.HexColor('#64748b')  # Slate 500
+        self.accent     = colors.HexColor('#1e40af')  # Blue 800 (Corporate Navy)
+        self.accent_lt  = colors.HexColor('#475569')  # Slate 600
         self.surface    = colors.HexColor('#f8fafc')  # Slate 50
         self.text_dark  = colors.HexColor('#0f172a')  # Slate 900
         self.text_body  = colors.HexColor('#334155')  # Slate 700
         self.text_muted = colors.HexColor('#64748b')  # Slate 500
         self.white      = colors.HexColor('#ffffff')
-        self.divider    = colors.HexColor('#cbd5e1')  # Slate 300
+        self.divider    = colors.HexColor('#e2e8f0')  # Slate 200 (Clean hairline)
 
     # ── Helpers ─────────────────────────────────────────────────────────────
 
@@ -74,8 +74,8 @@ class PDFGenerator:
         return {
             'doc_title': ParagraphStyle(
                 'DocTitle', parent=base['Normal'],
-                fontSize=20, fontName='Helvetica-Bold',
-                leading=24, textColor=self.text_dark,
+                fontSize=22, fontName='Helvetica-Bold',
+                leading=26, textColor=self.text_dark,
             ),
             'doc_subtitle': ParagraphStyle(
                 'DocSubtitle', parent=base['Normal'],
@@ -101,13 +101,13 @@ class PDFGenerator:
             ),
             'body': ParagraphStyle(
                 'Body', parent=base['Normal'],
-                fontSize=10, textColor=self.text_body,
-                leading=16, fontName='Helvetica',
+                fontSize=9.5, textColor=self.text_body,
+                leading=15, fontName='Helvetica',
             ),
             'field_label': ParagraphStyle(
                 'FieldLabel', parent=base['Normal'],
-                fontSize=8, textColor=self.text_muted,
-                fontName='Helvetica-Bold', leading=10,
+                fontSize=7.5, textColor=self.text_muted,
+                fontName='Helvetica-Bold', leading=9,
             ),
             'field_value': ParagraphStyle(
                 'FieldValue', parent=base['Normal'],
@@ -116,8 +116,8 @@ class PDFGenerator:
             ),
             'badge': ParagraphStyle(
                 'Badge', parent=base['Normal'],
-                fontSize=8, fontName='Helvetica-Bold',
-                leading=11, alignment=TA_CENTER,
+                fontSize=7.5, fontName='Helvetica-Bold',
+                leading=10, alignment=TA_CENTER,
             ),
         }
 
@@ -127,7 +127,7 @@ class PDFGenerator:
         title_p = Paragraph('RISHABH JAIN', s['doc_title'])
         sub_p = Paragraph('PORTFOLIO OUTREACH SUBMISSION', s['doc_subtitle'])
         
-        left_table = Table([[title_p], [sub_p]], colWidths=[usable_w - 150])
+        left_table = Table([[title_p], [sub_p]], colWidths=[usable_w - 180])
         left_table.setStyle(TableStyle([
             ('LEFTPADDING', (0, 0), (-1, -1), 0),
             ('RIGHTPADDING', (0, 0), (-1, -1), 0),
@@ -139,7 +139,7 @@ class PDFGenerator:
         date_p_key = Paragraph('DATE RECEIVED', s['date_key'])
         date_p_val = Paragraph(submission_date, s['date_val'])
         
-        right_table = Table([[date_p_key], [date_p_val]], colWidths=[150])
+        right_table = Table([[date_p_key], [date_p_val]], colWidths=[180])
         right_table.setStyle(TableStyle([
             ('LEFTPADDING', (0, 0), (-1, -1), 0),
             ('RIGHTPADDING', (0, 0), (-1, -1), 0),
@@ -147,7 +147,7 @@ class PDFGenerator:
             ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
         ]))
         
-        header_table = Table([[left_table, right_table]], colWidths=[usable_w - 150, 150])
+        header_table = Table([[left_table, right_table]], colWidths=[usable_w - 180, 180])
         header_table.setStyle(TableStyle([
             ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
             ('LEFTPADDING', (0, 0), (-1, -1), 0),
@@ -157,7 +157,7 @@ class PDFGenerator:
         ]))
         return header_table
 
-    # ── Details List ────────────────────────────────────────────────────────
+    # ── Two-Column Details Grid ─────────────────────────────────────────────
 
     def _details_table(self, s, usable_w, full_name, phone, email, purpose, company, budget, source):
         # Create purpose pill badge
@@ -166,7 +166,7 @@ class PDFGenerator:
             'BadgeText',
             parent=s['badge'],
             textColor=colors.HexColor(text_color_hex),
-            fontSize=8,
+            fontSize=7.5,
             fontName='Helvetica-Bold',
         )
         badge_p = Paragraph(purpose.upper(), badge_style)
@@ -181,39 +181,66 @@ class PDFGenerator:
             ('RIGHTPADDING', (0, 0), (-1, -1), 6),
         ]))
 
-        def make_row(label, val_content):
+        # Helper to format field block
+        def field_block(label, val_text_or_flowable):
             label_p = Paragraph(label.upper(), s['field_label'])
-            if isinstance(val_content, str):
-                val_p = Paragraph(val_content or '—', s['field_value'])
+            if isinstance(val_text_or_flowable, str):
+                val_p = Paragraph(val_text_or_flowable or '—', s['field_value'])
             else:
-                val_p = val_content
-            return [label_p, val_p]
+                val_p = val_text_or_flowable
+            return label_p, val_p
 
-        rows = [
-            make_row('Contact Name', full_name),
-            make_row('Email Address', email),
-            make_row('Phone Number', phone),
-            make_row('Company / Org', company or None),
-            make_row('Inquiry Purpose', badge_table),
-            make_row('Budget Range', budget or None),
-            make_row('Acquisition Channel', source or None),
+        # Left Column (Contact Profile)
+        c1_label1, c1_val1 = field_block('Contact Name', full_name)
+        c1_label2, c1_val2 = field_block('Email Address', email)
+        c1_label3, c1_val3 = field_block('Phone Number', phone)
+        c1_label4, c1_val4 = field_block('Company / Organization', company or None)
+
+        col1_rows = [
+            [c1_label1], [c1_val1], [Spacer(1, 10)],
+            [c1_label2], [c1_val2], [Spacer(1, 10)],
+            [c1_label3], [c1_val3], [Spacer(1, 10)],
+            [c1_label4], [c1_val4],
         ]
-
-        t = Table(rows, colWidths=[usable_w * 0.3, usable_w * 0.7])
-        t.setStyle(TableStyle([
-            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-            ('TOPPADDING', (0, 0), (-1, -1), 8),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
-            ('LEFTPADDING', (0, 0), (-1, -1), 10),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 10),
-            ('LINEBELOW', (0, 0), (-1, -2), 0.5, self.divider),
-            # Alternating background colours
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#f8fafc')),
-            ('BACKGROUND', (0, 2), (-1, 2), colors.HexColor('#f8fafc')),
-            ('BACKGROUND', (0, 4), (-1, 4), colors.HexColor('#f8fafc')),
-            ('BACKGROUND', (0, 6), (-1, 6), colors.HexColor('#f8fafc')),
+        col1_table = Table(col1_rows, colWidths=[usable_w * 0.46])
+        col1_table.setStyle(TableStyle([
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
         ]))
-        return t
+
+        # Right Column (Inquiry Specifications)
+        c2_label1, c2_val1 = field_block('Inquiry Purpose', badge_table)
+        c2_label2, c2_val2 = field_block('Budget Range', budget or None)
+        c2_label3, c2_val3 = field_block('Acquisition Channel', source or None)
+
+        col2_rows = [
+            [c2_label1], [c2_val1], [Spacer(1, 12)],
+            [c2_label2], [c2_val2], [Spacer(1, 10)],
+            [c2_label3], [c2_val3],
+        ]
+        col2_table = Table(col2_rows, colWidths=[usable_w * 0.46])
+        col2_table.setStyle(TableStyle([
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ]))
+
+        # Master Table
+        master_table = Table(
+            [[col1_table, '', col2_table]], 
+            colWidths=[usable_w * 0.47, usable_w * 0.06, usable_w * 0.47]
+        )
+        master_table.setStyle(TableStyle([
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+            ('LEFTPADDING', (0, 0), (-1, -1), 0),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ]))
+        return master_table
 
     # ── Main generate ────────────────────────────────────────────────────────
 
@@ -240,6 +267,9 @@ class PDFGenerator:
             filepath, pagesize=A4,
             rightMargin=margin, leftMargin=margin,
             topMargin=margin, bottomMargin=margin,
+            title=f"Submission - {full_name}",
+            author="Rishabh Jain",
+            subject="Portfolio Contact Submission Details",
         )
 
         s = self._styles()
@@ -255,9 +285,9 @@ class PDFGenerator:
         def add_section_header(title):
             sect_header_elements = [
                 Paragraph(title.upper(), s['section_heading']),
-                Spacer(1, 4),
-                Divider(usable_w, thickness=0.75, color=self.divider),
-                Spacer(1, 10),
+                Spacer(1, 6),
+                Divider(usable_w, thickness=1, color=self.divider),
+                Spacer(1, 14),
             ]
             return sect_header_elements
 
