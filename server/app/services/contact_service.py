@@ -35,18 +35,18 @@ class ContactService:
         pdf_path = os.path.join(Config.PDF_DIR, pdf_filename_result)
         
         # Send confirmation email to user
-        self.email_sender.send_contact_pdf(email, pdf_path, full_name, pdf_filename_result)
+        # self.email_sender.send_contact_pdf(email, pdf_path, full_name, pdf_filename_result)
         
         # Send admin notification
-        self.email_sender.send_admin_notification(
-            full_name=full_name,
-            email=email,
-            phone=phone,
-            purpose=purpose,
-            company=company,
-            source=source or 'Not specified',
-            introduction=introduction,
-        )
+        # self.email_sender.send_admin_notification(
+        #     full_name=full_name,
+        #     email=email,
+        #     phone=phone,
+        #     purpose=purpose,
+        #     company=company,
+        #     source=source or 'Not specified',
+        #     introduction=introduction,
+        # )
 
         return {
             'success': True,
