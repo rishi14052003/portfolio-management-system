@@ -26,7 +26,7 @@ class Config:
     PDF_DIR = os.path.join(BASE_DIR, 'app', 'generated_pdfs')
     DATA_DIR = os.path.join(BASE_DIR, 'app', 'data')
     LOGS_DIR = os.path.join(BASE_DIR, 'logs')
-
+    PDF_PUBLIC_BASE_URL = os.getenv('PDF_PUBLIC_BASE_URL', '')
     LEADS_FILE = os.path.join(DATA_DIR, 'leads.json')
     ACTIVITY_FILE = os.path.join(DATA_DIR, 'activity.json')
 
