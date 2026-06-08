@@ -34,19 +34,27 @@ class ContactService:
 
         pdf_path = os.path.join(Config.PDF_DIR, pdf_filename_result)
         
-        # Send confirmation email to user
-        # self.email_sender.send_contact_pdf(email, pdf_path, full_name, pdf_filename_result)
+        # Send confirmation email to user (non-blocking and error-safe)
+        try:
+            self.email_sender.send_contact_pdf(email, pdf_path, full_name, pdf_filename_result)
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error(f"Failed to trigger user email send: {str(e)}")
         
-        # Send admin notification
-        # self.email_sender.send_admin_notification(
-        #     full_name=full_name,
-        #     email=email,
-        #     phone=phone,
-        #     purpose=purpose,
-        #     company=company,
-        #     source=source or 'Not specified',
-        #     introduction=introduction,
-        # )
+        # Send admin notification (non-blocking and error-safe)
+        try:
+            self.email_sender.send_admin_notification(
+                full_name=full_name,
+                email=email,
+                phone=phone,
+                purpose=purpose,
+                company=company,
+                source=source or 'Not specified',
+                introduction=introduction,
+            )
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error(f"Failed to trigger admin email send: {str(e)}")
 
         return {
             'success': True,

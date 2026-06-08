@@ -1,9 +1,20 @@
 import logging
 import os
+from threading import Thread
+from flask import current_app
 from flask_mail import Message, Mail
 from app.email.templates import get_user_confirmation_template, get_admin_notification_template
 
 logger = logging.getLogger(__name__)
+
+
+def send_async_email(app, msg, mail):
+    with app.app_context():
+        try:
+            mail.send(msg)
+            logger.info('Email sent successfully in background thread.')
+        except Exception as e:
+            logger.error('Failed to send email in background thread: %s', str(e))
 
 
 class EmailSender:
@@ -12,11 +23,9 @@ class EmailSender:
         self.admin_email = os.getenv('MAIL_ADMIN_EMAIL') or os.getenv('MAIL_DEFAULT_SENDER')
 
     def send_contact_pdf(self, recipient: str, pdf_path: str, full_name: str, pdf_filename: str = '') -> bool:
-        """Send confirmation email to user with PDF attachment"""
+        """Send confirmation email to user with PDF attachment in background"""
         try:
-            # Get just the filename from the path
             filename = pdf_filename or pdf_path.split('/')[-1].split('\\')[-1]
-            
             html_body = get_user_confirmation_template(full_name, filename)
             
             msg = Message(
@@ -32,11 +41,14 @@ class EmailSender:
                     data=f.read(),
                 )
 
-            self.mail.send(msg)
-            logger.info('Confirmation email sent successfully to %s', recipient)
+            # Get the current Flask app instance and start background thread
+            app = current_app._get_current_object()
+            Thread(target=send_async_email, args=(app, msg, self.mail)).start()
+            
+            logger.info('Background thread started to send confirmation email to %s', recipient)
             return True
         except Exception as e:
-            logger.error('Failed to send confirmation email to %s: %s', recipient, str(e))
+            logger.error('Failed to start confirmation email thread to %s: %s', recipient, str(e))
             return False
 
     def send_admin_notification(
@@ -49,7 +61,7 @@ class EmailSender:
         source: str,
         introduction: str,
     ) -> bool:
-        """Send notification email to admin about new lead"""
+        """Send notification email to admin about new lead in background"""
         try:
             if not self.admin_email:
                 logger.warning('Admin email not configured')
@@ -71,9 +83,12 @@ class EmailSender:
                 html=html_body,
             )
 
-            self.mail.send(msg)
-            logger.info('Admin notification sent for new lead from %s', full_name)
+            # Get the current Flask app instance and start background thread
+            app = current_app._get_current_object()
+            Thread(target=send_async_email, args=(app, msg, self.mail)).start()
+            
+            logger.info('Background thread started for admin notification of lead from %s', full_name)
             return True
         except Exception as e:
-            logger.error('Failed to send admin notification: %s', str(e))
+            logger.error('Failed to start admin notification thread: %s', str(e))
             return False
