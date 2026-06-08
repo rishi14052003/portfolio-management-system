@@ -29,3 +29,8 @@ class Config:
 
     LEADS_FILE = os.path.join(DATA_DIR, 'leads.json')
     ACTIVITY_FILE = os.path.join(DATA_DIR, 'activity.json')
+
+    # Airtable
+    AIRTABLE_TOKEN = os.getenv('AIRTABLE_PERSONAL_ACCESS_TOKEN', '')
+    AIRTABLE_BASE_ID = os.getenv('AIRTABLE_BASE_ID', '')
+    AIRTABLE_LEADS_TABLE = 'Leads'
