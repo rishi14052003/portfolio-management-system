@@ -32,7 +32,7 @@ class ContactSchema(Schema):
     company = fields.Str(required=True, validate=validate.Length(min=2, max=100))
     budget = fields.Str(
         required=False,
-        validate=validate.OneOf(['Less than $500', '$500–$2,000', '$2,000–$5,000', '$5,000+']),
+        validate=validate.OneOf(['Less than $500', '$500–$2,000', '$2,000–$5,000', '$5,000–$10,000', '$10,000+', 'Not Specified']),
         allow_none=True
     )
     source = fields.Str(

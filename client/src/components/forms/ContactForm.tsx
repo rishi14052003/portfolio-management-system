@@ -109,7 +109,9 @@ export function ContactForm() {
             { value: 'Less than $500', label: 'Less than $500' },
             { value: '$500–$2,000', label: '$500–$2,000' },
             { value: '$2,000–$5,000', label: '$2,000–$5,000' },
-            { value: '$5,000+', label: '$5,000+' },
+            { value: '$5,000–$10,000', label: '$5,000–$10,000' },
+            { value: '$10,000+', label: '$10,000+' },
+            { value: 'Not Specified', label: 'Not Specified' },
           ]}
           {...register('budget')}
         />

@@ -94,10 +94,12 @@ export function DashboardPage() {
   // Budget calculations (Only for freelance project leads)
   const totalBudgetLeads = Object.values(stats?.leads_by_budget || {}).reduce((a, b) => a + b, 0) || 1;
   const budgetList = [
-    { range: 'Less than $500', count: stats?.leads_by_budget?.['Less than $500'] ?? 0, color: 'bg-indigo-400' },
-    { range: '$500–$2,000', count: stats?.leads_by_budget?.['$500–$2,000'] ?? 0, color: 'bg-indigo-500' },
-    { range: '$2,000–$5,000', count: stats?.leads_by_budget?.['$2,000–$5,000'] ?? 0, color: 'bg-indigo-600' },
-    { range: '$5,000+', count: stats?.leads_by_budget?.['$5,000+'] ?? 0, color: 'bg-indigo-700' },
+    { range: 'Less than $500', count: stats?.leads_by_budget?.['Less than $500'] ?? 0, color: 'bg-indigo-300' },
+    { range: '$500–$2,000', count: stats?.leads_by_budget?.['$500–$2,000'] ?? 0, color: 'bg-indigo-400' },
+    { range: '$2,000–$5,000', count: stats?.leads_by_budget?.['$2,000–$5,000'] ?? 0, color: 'bg-indigo-500' },
+    { range: '$5,000–$10,000', count: stats?.leads_by_budget?.['$5,000–$10,000'] ?? 0, color: 'bg-indigo-600' },
+    { range: '$10,000+', count: stats?.leads_by_budget?.['$10,000+'] ?? 0, color: 'bg-indigo-700' },
+    { range: 'Not Specified', count: stats?.leads_by_budget?.['Not Specified'] ?? 0, color: 'bg-indigo-900' },
   ];
 
   // Source calculations

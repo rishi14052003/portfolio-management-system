@@ -31,7 +31,7 @@ export const contactSchema = z.object({
   budget: z
     .string()
     .refine(
-      (val: string) => !val || ['Less than $500', '$500–$2,000', '$2,000–$5,000', '$5,000+'].includes(val),
+      (val: string) => !val || ['Less than $500', '$500–$2,000', '$2,000–$5,000', '$5,000–$10,000', '$10,000+', 'Not Specified'].includes(val),
       'Invalid budget range selected'
     )
     .optional()
