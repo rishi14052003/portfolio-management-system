@@ -20,7 +20,7 @@ class Config:
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD', '')
     MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER', '')
 
-    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:5173').split(',')
+    CORS_ORIGINS = [origin.strip().rstrip('/') for origin in os.getenv('CORS_ORIGINS', 'http://localhost:5173').split(',')]
 
     BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     PDF_DIR = os.path.join(BASE_DIR, 'app', 'generated_pdfs')
