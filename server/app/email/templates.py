@@ -141,8 +141,8 @@ def get_user_confirmation_template(full_name: str, pdf_filename: str) -> str:
                     © 2026 Rishabh Jain. All rights reserved.
                 </p>
                 <p style="margin: 0;">
-                    <a href="https://rishabhjain.dev">Visit my portfolio</a> | 
-                    <a href="https://linkedin.com">Connect on LinkedIn</a>
+                    <a href="https://github.com/rishi14052003">GitHub</a> |
+                    <a href="https://linkedin.com/in/rishabh-jain-14052003">LinkedIn</a>
                 </p>
             </div>
         </div>

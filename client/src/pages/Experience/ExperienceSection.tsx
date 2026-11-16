@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Building2 } from 'lucide-react';
+import { Building2, MapPin } from 'lucide-react';
 import { SectionHeading } from '@/components/common/SectionHeading';
 import { EXPERIENCES } from '@/constants';
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="section-padding bg-white/50 dark:bg-gray-900/50">
+    <section id="experience" className="section-padding section-tinted">
       <div className="max-w-4xl mx-auto">
         <SectionHeading title="Experience" subtitle="My professional journey" />
 
@@ -38,6 +38,12 @@ export function ExperienceSection() {
                     {exp.role}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 font-medium mb-3">{exp.company}</p>
+                  {exp.location && (
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-2">
+                      <MapPin className="w-4 h-4" />
+                      {exp.location}
+                    </p>
+                  )}
                   <ul className="space-y-2 mb-4">
                     {exp.responsibilities.map((item) => (
                       <li key={item} className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">

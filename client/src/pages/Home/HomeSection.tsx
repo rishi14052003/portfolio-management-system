@@ -1,12 +1,11 @@
 import { motion } from 'framer-motion';
-import { Download, ArrowRight, Github, Linkedin, Twitter, Mail } from 'lucide-react';
-import { SITE_CONFIG, SOCIAL_LINKS, TYPING_WORDS, FLOATING_TECH } from '@/constants';
+import { Download, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ABOUT_CONTENT, SITE_CONFIG, SOCIAL_LINKS, TYPING_WORDS, FLOATING_TECH } from '@/constants';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 
 const socialIcons: Record<string, React.ReactNode> = {
   github: <Github className="w-5 h-5" />,
   linkedin: <Linkedin className="w-5 h-5" />,
-  twitter: <Twitter className="w-5 h-5" />,
   mail: <Mail className="w-5 h-5" />,
 };
 
@@ -90,7 +89,7 @@ export function HomeSection() {
             transition={{ delay: 0.4 }}
             className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
           >
-            Building scalable web applications and intelligent automation workflows that drive real business impact.
+            {ABOUT_CONTENT.intro}
           </motion.p>
 
           <motion.div
@@ -106,7 +105,7 @@ export function HomeSection() {
             <a href="#projects" className="btn-outline">
               View Projects
             </a>
-            <a href={SITE_CONFIG.resumeUrl} download className="btn-outline">
+            <a href={SITE_CONFIG.resumeUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
               <Download className="w-4 h-4" />
               Resume
             </a>

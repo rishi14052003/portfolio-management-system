@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { SectionHeading } from '@/components/common/SectionHeading';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { SITE_CONFIG } from '@/constants';
@@ -23,17 +23,22 @@ export function ContactSection() {
 
             <div className="space-y-6">
               {[
-                { icon: Mail, label: 'Email', value: SITE_CONFIG.email },
-                { icon: Phone, label: 'Phone', value: SITE_CONFIG.phone },
+                { icon: Mail, label: 'Email', value: SITE_CONFIG.email, href: `mailto:${SITE_CONFIG.email}` },
                 { icon: MapPin, label: 'Location', value: SITE_CONFIG.location },
-              ].map(({ icon: Icon, label, value }) => (
+              ].map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="p-3 rounded-xl bg-primary-500/10">
                     <Icon className="w-5 h-5 text-primary-500" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-500 dark:text-gray-400">{label}</p>
-                    <p className="font-medium text-gray-900 dark:text-white">{value}</p>
+                    {href ? (
+                      <a href={href} className="font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="font-medium text-gray-900 dark:text-white">{value}</p>
+                    )}
                   </div>
                 </div>
               ))}

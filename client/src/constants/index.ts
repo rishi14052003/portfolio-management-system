@@ -1,12 +1,19 @@
-import type { SkillCategory, Experience, Project, Education, SocialLink } from '@/types';
+import type {
+  Certification,
+  Education,
+  Experience,
+  Project,
+  Publication,
+  SkillCategory,
+  SocialLink,
+} from '@/types';
 
 export const SITE_CONFIG = {
   name: 'Rishabh Jain',
   title: 'Full Stack Developer & Automation Engineer',
-  email: 'rishabh.jain@example.com',
-  phone: '+91 98765 43210',
-  location: 'India',
-  resumeUrl: '/resume.pdf',
+  email: 'siddh2606@gmail.com',
+  location: 'Surat, Gujarat',
+  resumeUrl: 'https://drive.google.com/file/d/1Q5pw6dOg887IEsOvPfUNx4u8zXYrUtzB/view?usp=sharing',
 };
 
 export const NAV_LINKS = [
@@ -16,198 +23,203 @@ export const NAV_LINKS = [
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Education', href: '#education' },
+  { name: 'Publications', href: '#publications' },
+  { name: 'Certifications', href: '#certifications' },
   { name: 'Contact', href: '#contact' },
 ];
 
 export const TYPING_WORDS = [
+  'MERN Stack Developer',
   'Full Stack Developer',
-  'Automation Engineer',
-  'React Specialist',
-  'API Architect',
-  'n8n Expert',
+  'Automation Engineer (n8n, Airtable)',
 ];
 
 export const FLOATING_TECH = [
-  'React', 'TypeScript', 'Python', 'Node.js', 'MongoDB', 'AWS', 'n8n', 'Docker',
+  'React.js', 'TypeScript', 'Python', 'Node.js', 'MongoDB', 'AWS', 'n8n', 'Go',
 ];
 
 export const ABOUT_CONTENT = {
-  intro: `I'm a passionate Full Stack Developer and Automation Engineer with expertise in building scalable web applications and intelligent workflow automations. I love turning complex problems into elegant, efficient solutions.`,
-  summary: `With years of experience across the full software development lifecycle, I specialize in React ecosystems, Python backends, and no-code/low-code automation platforms. I bridge the gap between development and operations through smart integrations.`,
-  currentRole: 'Full Stack Developer & Automation Engineer',
+  intro: `I'm a Full Stack Developer and Automation Engineer with 1+ year of professional experience building scalable web applications, intelligent automation pipelines, and ML-powered systems.`,
+  summary: `I work with React.js, Node.js, Go (Golang), and TypeScript, with hands-on experience in n8n and Webflow. As an AWS Certified Cloud Practitioner, I have delivered production-grade solutions including real-time trading dashboards and B2B lead intelligence platforms.`,
+  currentRole: 'Software Engineer at iGeek',
   technologies: [
-    'React', 'TypeScript', 'Python', 'Node.js', 'MongoDB', 'AWS', 'n8n', 'Flask',
+    'React.js', 'Node.js', 'Express.js', 'TypeScript', 'Go (Golang)', 'Python', 'n8n', 'Webflow', 'AWS',
   ],
 };
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'Frontend',
-    color: 'from-blue-500 to-cyan-500',
-    skills: [
-      { name: 'React' },
-      { name: 'TypeScript' },
-      { name: 'JavaScript' },
-      { name: 'Tailwind' },
-    ],
+    title: 'Programming Languages',
+    color: 'from-orange-400 to-amber-500',
+    skills: ['Java', 'Python', 'C', 'C++', 'Go (Golang)', 'JavaScript', 'TypeScript'].map((name) => ({ name })),
   },
   {
-    title: 'Backend',
-    color: 'from-green-500 to-emerald-500',
-    skills: [
-      { name: 'Node.js' },
-      { name: 'Express.js' },
-      { name: 'Python' },
-      { name: 'Go' },
-    ],
+    title: 'Full-Stack Development',
+    color: 'from-amber-500 to-yellow-500',
+    skills: ['HTML5', 'CSS3', 'React.js', 'Node.js', 'Express.js', 'REST APIs', 'MongoDB', 'MySQL'].map((name) => ({ name })),
   },
   {
-    title: 'Database',
-    color: 'from-purple-500 to-pink-500',
-    skills: [
-      { name: 'MongoDB' },
-      { name: 'MySQL' },
-      { name: 'Airtable' },
-      { name: 'Supabase' },
-    ],
+    title: 'Automation & Low-Code',
+    color: 'from-yellow-500 to-orange-500',
+    skills: ['n8n', 'Make.com', 'Webflow', 'WordPress', 'Lovable', 'Airtable'].map((name) => ({ name })),
   },
   {
-    title: 'Cloud',
-    color: 'from-orange-500 to-amber-500',
-    skills: [
-      { name: 'AWS' },
-      { name: 'Render' },
-      { name: 'Vercel' },
-      { name: 'Netlify' },
-    ],
+    title: 'DevOps & Cloud',
+    color: 'from-orange-500 to-yellow-400',
+    skills: ['AWS', 'Git', 'GitHub', 'CI/CD', 'Vercel', 'Netlify', 'Render'].map((name) => ({ name })),
   },
   {
-    title: 'Automation',
-    color: 'from-indigo-500 to-violet-500',
+    title: 'AI & Machine Learning',
+    color: 'from-amber-400 to-orange-600',
+    skills: ['TensorFlow', 'PyTorch', 'Scikit-Learn', 'GANs', 'VAEs', 'Naive Bayes', 'NLP'].map((name) => ({ name })),
+  },
+  {
+    title: 'Engineering Foundations',
+    color: 'from-orange-600 to-amber-600',
     skills: [
-      { name: 'n8n' },
-      { name: 'Make.com' },
-      { name: 'Webhooks' },
-      { name: 'API Integrations' },
-    ],
+      'Data Structures & Algorithms (DSA)',
+      'System Design',
+      'DBMS',
+      'Computer Networks',
+      'Operating Systems',
+      'Information Security',
+    ].map((name) => ({ name })),
   },
 ];
 
 export const EXPERIENCES: Experience[] = [
   {
-    company: 'Tech Solutions Inc.',
-    role: 'Senior Full Stack Developer',
-    period: '2023 - Present',
+    company: 'iGeek',
+    role: 'Software Engineer',
+    period: 'September 2025 - Present',
+    location: 'Surat, Gujarat',
     responsibilities: [
-      'Led development of enterprise-scale web applications using React and Node.js',
-      'Architected microservices and RESTful APIs serving 100K+ daily users',
-      'Implemented CI/CD pipelines and automated deployment workflows',
-      'Mentored junior developers and conducted code reviews',
+      'Engineered a full-stack restaurant booking system with real-time availability tracking and administration tools.',
+      'Built a trading platform frontend with live price charts, portfolio dashboards, and order placement interfaces.',
+      'Created an n8n lead-generation workflow that collects business contact and decision-maker details and routes qualified leads through webhooks.',
     ],
-    technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'AWS', 'Docker'],
-  },
-  {
-    company: 'Automation Labs',
-    role: 'Automation Engineer',
-    period: '2021 - 2023',
-    responsibilities: [
-      'Built complex n8n workflows integrating 50+ third-party services',
-      'Designed webhook-based automation systems for lead management',
-      'Reduced manual processing time by 80% through intelligent automations',
-      'Created custom API integrations for CRM and marketing platforms',
-    ],
-    technologies: ['n8n', 'Python', 'Webhooks', 'Airtable', 'Make.com'],
-  },
-  {
-    company: 'Startup Ventures',
-    role: 'Full Stack Developer',
-    period: '2019 - 2021',
-    responsibilities: [
-      'Developed full-stack features for SaaS products from concept to deployment',
-      'Built responsive UIs with React and implemented Python/Flask backends',
-      'Integrated payment gateways and third-party APIs',
-      'Optimized database queries improving performance by 60%',
-    ],
-    technologies: ['React', 'Python', 'Flask', 'MySQL', 'Redis'],
+    technologies: ['React.js', 'Node.js', 'Express.js', 'MySQL', 'n8n', 'REST APIs', 'Real-time Systems'],
   },
 ];
 
 export const PROJECTS: Project[] = [
   {
-    id: '1',
+    id: 'geosync',
+    title: 'GeoSync - Real-time Map Synchronization',
+    description: 'A full-stack application that synchronizes map changes across users in real time, with role-based access, Google Maps integration, a responsive interface, and Socket.io communication.',
+    technologies: ['React', 'Node.js', 'Express.js', 'Socket.io', 'Google Maps API', 'Tailwind CSS', 'Vite'],
+    github: 'https://github.com/rishi14052003/REAL-TIME-GEO-SYNC',
+    metrics: [
+      { value: '10/sec', label: 'Update Rate' },
+      { value: 'Multi-user', label: 'Real-time Sync' },
+      { value: 'Responsive', label: 'Mobile Ready' },
+    ],
+  },
+  {
+    id: 'movie-booking',
+    title: 'Movie Ticket Booking Website',
+    description: 'A full-stack booking platform for 50+ movie listings and 100+ user accounts. Its REST APIs improved query response times by 30%, and its responsive UI improved interaction speed by 25%.',
+    technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs'],
+    github: 'https://github.com/rishi14052003/ShowTimeBooker',
+    metrics: [
+      { value: '50+', label: 'Movie Listings' },
+      { value: '30%', label: 'Faster Responses' },
+      { value: '25%', label: 'Interaction Speed' },
+    ],
+  },
+  {
+    id: 'ai-image-generator',
+    title: 'AI Image Generator using GANs',
+    description: 'A generative AI model that creates 1,000+ synthetic images from random seeds and text prompts, applying deep-learning techniques to reduce image prototyping workload.',
+    technologies: ['Python', 'TensorFlow', 'PyTorch', 'GANs', 'VAEs', 'Machine Learning', 'Deep Learning'],
+    github: 'https://github.com/rishi14052003/Ai-Image-Generator',
+    metrics: [
+      { value: '1,000+', label: 'Unique Images' },
+      { value: '80%', label: 'Workload Reduction' },
+    ],
+  },
+  {
+    id: 'lead-intelligence',
     title: 'Lead Intelligence Platform',
-    description: 'AI-powered lead scoring and management platform with real-time analytics, automated follow-ups, and CRM integration.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-    technologies: ['React', 'Python', 'MongoDB', 'n8n'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-  {
-    id: '2',
-    title: 'Chuck Bot Trading Platform',
-    description: 'Automated cryptocurrency trading bot with real-time market analysis, risk management, and portfolio tracking.',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop',
-    technologies: ['Node.js', 'WebSocket', 'Redis', 'Python'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-  {
-    id: '3',
-    title: 'Restaurant Booking System',
-    description: 'Full-featured restaurant reservation system with table management, waitlist, and SMS notifications.',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
-    technologies: ['React', 'Express.js', 'MySQL', 'Twilio'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-  {
-    id: '4',
-    title: 'Movie Ticket Booking System',
-    description: 'Online movie ticket booking platform with seat selection, payment integration, and e-ticket generation.',
-    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-  {
-    id: '5',
-    title: 'Sentiment Analysis',
-    description: 'NLP-powered sentiment analysis tool for social media monitoring and customer feedback analysis.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-    technologies: ['Python', 'Flask', 'NLTK', 'React'],
-    github: 'https://github.com',
-    live: 'https://example.com',
-  },
-  {
-    id: '6',
-    title: 'Random Image Generator',
-    description: 'Creative random image generator API with customizable parameters, filters, and batch processing.',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop',
-    technologies: ['Go', 'React', 'AWS S3', 'Docker'],
-    github: 'https://github.com',
-    live: 'https://example.com',
+    description: 'A B2B platform built with Go and React + TypeScript that extracts decision-makers such as CEOs, CTOs, and HR contacts from company domains. The Go backend supports concurrent domain lookups.',
+    technologies: ['React', 'TypeScript', 'Go (Golang)', 'Tailwind CSS', 'Netlify', 'B2B APIs'],
+    github: 'https://github.com/rishi14052003/lead-intelligence-platform',
+    metrics: [
+      { value: 'Real-time', label: 'Decision-maker Extraction' },
+      { value: 'Concurrent', label: 'Domain Lookups' },
+      { value: 'Netlify', label: 'Frontend Deployment' },
+    ],
   },
 ];
 
 export const EDUCATION: Education[] = [
   {
-    degree: 'Bachelor of Technology in Computer Science',
+    degree: 'B.Tech in Computer Science',
     institution: 'Vellore Institute of Technology',
-    cgpa: '7.7/10',
+    cgpa: '7.70',
     year: '2025',
+    duration: 'September 2021 - August 2025',
+    location: 'Vellore, Tamil Nadu',
+    coursework: [
+      'Data Structures & Algorithms',
+      'Operating Systems',
+      'Database Management Systems',
+      'Machine Learning',
+      'Artificial Intelligence',
+      'Computer Networks',
+      'Information Security',
+      'Compiler Design',
+      'Web Development',
+      'Cloud Computing',
+    ],
+    achievements: [
+      'AWS Certified while pursuing the degree',
+      'Internship experience in MERN stack development',
+      'Projects in full-stack development and machine learning',
+    ],
+  },
+];
+
+export const CERTIFICATIONS: Certification[] = [
+  {
+    name: 'AWS Certified Cloud Practitioner',
+    issuer: 'Amazon Web Services (AWS)',
+    date: 'February 25, 2024',
+    description: 'Certification covering AWS Cloud services, core AWS services, security, compliance, and billing concepts.',
+    expirationDate: 'February 25, 2027',
+    status: 'Active',
+    credentialLink: 'https://drive.google.com/file/d/1lvtuUVR_sP9giYQzXzOJl7mD4e2kVBnl/view?usp=sharing',
+    credentialId: 'f11139fa33404101817f6ef31e5d3412',
+    skills: ['Cloud Computing', 'AWS Services', 'Cloud Security', 'Infrastructure'],
   },
   {
-    degree: 'Higher Secondary Education (Science)',
-    institution: 'Metas Adventist School',
-    cgpa: '91%',
-    year: '2021',
+    name: 'MERN Full Stack Internship Program',
+    issuer: 'Ethnus',
+    date: 'December 8, 2023',
+    description: 'Full-stack development internship covering MongoDB, Express.js, React.js, and Node.js, with a focus on web development, REST APIs, and responsive UI design.',
+    status: 'Completed',
+    programDates: 'August-November 2023',
+    duration: '100 Hours',
+    credentialLink: 'https://drive.google.com/file/d/1sDdQD8ghI3uKKgIkxaYMLus1NNtBmB9g/view?usp=drive_link',
+    registrationNumber: '21BCE2953',
+    skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Full-Stack Development'],
+  },
+];
+
+export const PUBLICATIONS: Publication[] = [
+  {
+    title: 'LIPNET: Deep Learning for Visual Speech Recognition',
+    venue: 'IJSET Publication',
+    abstract: 'A deep-learning architecture for visual speech recognition that uses computer vision and neural networks to interpret lip movements and convert them into text, with applications in accessibility and silent communication.',
+    techStack: ['Python', 'TensorFlow', 'PyTorch', 'OpenCV', 'NumPy', 'Keras', 'Scikit-Learn', 'Deep Learning'],
+    publicationLink: 'http://ijset.in/lipnet-deep-learning-visual-speech-recognitions/',
+    githubLink: 'https://github.com/rishi14052003/lip_parser',
   },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'GitHub', url: 'https://github.com/rishi14052003', icon: 'github' },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/rishabh-jain-a34623227/', icon: 'linkedin' },
-  { name: 'Twitter', url: 'https://twitter.com', icon: 'twitter' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/rishabh-jain-14052003', icon: 'linkedin' },
   { name: 'Email', url: 'mailto:siddh2606@gmail.com', icon: 'mail' },
 ];
 

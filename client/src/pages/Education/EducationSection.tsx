@@ -5,7 +5,7 @@ import { EDUCATION } from '@/constants';
 
 export function EducationSection() {
   return (
-    <section id="education" className="section-padding bg-white/50 dark:bg-gray-900/50">
+    <section id="education" className="section-padding section-tinted">
       <div className="max-w-3xl mx-auto">
         <SectionHeading title="Education" subtitle="Academic background" />
 
@@ -38,12 +38,39 @@ export function EducationSection() {
                   </span>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-3">{edu.institution}</p>
+                {(edu.duration || edu.location) && (
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                    {[edu.duration, edu.location].filter(Boolean).join(' · ')}
+                  </p>
+                )}
                 <div className="flex items-center gap-2 text-sm">
                   <Award className="w-4 h-4 text-accent-500" />
                   <span className="text-gray-700 dark:text-gray-300">
                     CGPA: <strong>{edu.cgpa}</strong>
                   </span>
                 </div>
+                {edu.achievements && (
+                  <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    {edu.achievements.map((achievement) => (
+                      <li key={achievement} className="flex items-start gap-2">
+                        <span className="text-primary-500">•</span>
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {edu.coursework && (
+                  <div className="mt-4">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Relevant coursework</p>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.coursework.map((course) => (
+                        <span key={course} className="px-2 py-1 text-xs rounded-md bg-primary-500/10 text-primary-600 dark:text-primary-400">
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
             </motion.div>
           ))}

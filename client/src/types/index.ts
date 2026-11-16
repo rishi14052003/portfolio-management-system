@@ -87,6 +87,7 @@ export interface Experience {
   company: string;
   role: string;
   period: string;
+  location?: string;
   responsibilities: string[];
   technologies: string[];
 }
@@ -95,10 +96,11 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   technologies: string[];
-  github: string;
-  live: string;
+  github?: string;
+  live?: string;
+  metrics?: Array<{ value: string; label: string }>;
 }
 
 export interface Education {
@@ -106,6 +108,34 @@ export interface Education {
   institution: string;
   cgpa: string;
   year: string;
+  duration?: string;
+  location?: string;
+  coursework?: string[];
+  achievements?: string[];
+}
+
+export interface Certification {
+  name: string;
+  issuer: string;
+  date: string;
+  description?: string;
+  expirationDate?: string;
+  status: string;
+  programDates?: string;
+  duration?: string;
+  credentialLink?: string;
+  credentialId?: string;
+  registrationNumber?: string;
+  skills?: string[];
+}
+
+export interface Publication {
+  title: string;
+  venue: string;
+  abstract: string;
+  techStack: string[];
+  publicationLink?: string;
+  githubLink?: string;
 }
 
 export interface SocialLink {

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Image } from 'lucide-react';
 import { SectionHeading } from '@/components/common/SectionHeading';
 import { PROJECTS } from '@/constants';
 
@@ -21,12 +21,18 @@ export function ProjectsSection() {
               className="glass-card overflow-hidden group"
             >
               <div className="relative overflow-hidden aspect-video">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-500/15 via-accent-500/10 to-gray-100 dark:to-gray-800">
+                    <Image className="w-12 h-12 text-primary-500/60" aria-hidden="true" />
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
@@ -34,7 +40,7 @@ export function ProjectsSection() {
                 <h3 className="text-xl font-display font-bold text-gray-900 dark:text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -47,25 +53,36 @@ export function ProjectsSection() {
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-3">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    Code
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
+                <div className="flex flex-wrap gap-3">
+                  {project.metrics?.map((metric) => (
+                    <span key={metric.label} className="text-xs text-gray-500 dark:text-gray-400">
+                      <strong className="text-gray-800 dark:text-gray-200">{metric.value}</strong> {metric.label}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-3 mt-4">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    >
+                      <Github className="w-4 h-4" />
+                      Code
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.article>
