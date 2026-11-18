@@ -11,6 +11,7 @@ interface LeadDetailModalProps {
   onClose: () => void;
 }
 
+
 export function LeadDetailModal({ lead, onClose }: LeadDetailModalProps) {
   const [showPdfNaming, setShowPdfNaming] = useState(false);
   const [pdfName, setPdfName] = useState(lead?.pdf_filename?.replace('.pdf', '') || '');
@@ -93,7 +94,7 @@ export function LeadDetailModal({ lead, onClose }: LeadDetailModalProps) {
                   </div>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">
                     {lead.purpose ? (
-                      <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-semibold">
+                      <span className="inline-block px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-200 rounded-full text-xs font-semibold">
                         {lead.purpose}
                       </span>
                     ) : (
@@ -115,7 +116,7 @@ export function LeadDetailModal({ lead, onClose }: LeadDetailModalProps) {
                       Budget
                     </div>
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
-                      <span className="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-semibold">
+                      <span className="inline-block px-3 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-800 dark:text-accent-200 rounded-full text-xs font-semibold">
                         {lead.budget}
                       </span>
                     </p>
@@ -156,7 +157,7 @@ export function LeadDetailModal({ lead, onClose }: LeadDetailModalProps) {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4"
+                className="bg-accent-50 dark:bg-accent-900/20 border border-accent-200 dark:border-accent-800 rounded-xl p-4"
               >
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   PDF Filename (without .pdf extension)
