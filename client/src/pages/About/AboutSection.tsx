@@ -5,31 +5,14 @@ import { ABOUT_CONTENT } from '@/constants';
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-padding bg-white/50 dark:bg-gray-900/50">
+    <section id="about" className="section-padding section-tinted">
       <div className="max-w-7xl mx-auto">
         <SectionHeading title="About Me" subtitle="Get to know me better" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="aspect-square max-w-md mx-auto rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 p-1">
-              <div className="w-full h-full rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
-                <div className="text-8xl font-display font-bold gradient-text">RJ</div>
-              </div>
-            </div>
-            <div className="absolute -bottom-4 -right-4 glass-card p-4 hidden md:block">
-              <p className="text-2xl font-bold gradient-text">5+</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Years Experience</p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="space-y-6"
           >

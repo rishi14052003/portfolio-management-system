@@ -107,7 +107,7 @@ export function LeadsPage() {
           <button
             onClick={handleExportCSV}
             disabled={exporting || leads.length === 0}
-            className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors text-sm"
           >
             <FileDown className="w-4 h-4" />
             CSV
@@ -115,7 +115,7 @@ export function LeadsPage() {
           <button
             onClick={handleExportExcel}
             disabled={exporting || leads.length === 0}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors text-sm"
           >
             <FileDown className="w-4 h-4" />
             Excel
@@ -127,7 +127,7 @@ export function LeadsPage() {
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-2xl p-5 border border-primary-200/50 dark:border-primary-800/50"
+        className="bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-2xl p-5 border border-primary-200/50 dark:border-primary-800/50"
       >
         <div className="space-y-4">
           {/* Search */}
@@ -213,7 +213,7 @@ export function LeadsPage() {
                       <div className="font-semibold text-gray-900 dark:text-white">{lead.full_name}</div>
                       {lead.purpose && (
                         <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                          <span className="inline-block px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded text-xs font-medium">
+                          <span className="inline-block px-2 py-0.5 bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-200 rounded text-xs font-medium">
                             {lead.purpose}
                           </span>
                         </div>
@@ -237,7 +237,7 @@ export function LeadsPage() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => setSelectedLead(lead)}
-                          className="p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 text-blue-600 dark:text-blue-400 transition-colors"
+                          className="p-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 text-primary-700 dark:text-primary-300 transition-colors"
                           title="View full details"
                         >
                           <Eye className="w-4 h-4" />
@@ -245,7 +245,7 @@ export function LeadsPage() {
                         {lead.pdf_filename && (
                           <button
                             onClick={() => handleViewPdf(lead.pdf_filename)}
-                            className="p-2 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 text-green-600 dark:text-green-400 transition-colors"
+                            className="p-2 rounded-lg hover:bg-accent-50 dark:hover:bg-accent-900/20 text-accent-700 dark:text-accent-300 transition-colors"
                             title="Download PDF"
                           >
                             <Download className="w-4 h-4" />

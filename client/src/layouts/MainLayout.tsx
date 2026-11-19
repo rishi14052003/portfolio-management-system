@@ -7,6 +7,8 @@ import { SkillsSection } from '@/pages/Skills/SkillsSection';
 import { ExperienceSection } from '@/pages/Experience/ExperienceSection';
 import { ProjectsSection } from '@/pages/Projects/ProjectsSection';
 import { EducationSection } from '@/pages/Education/EducationSection';
+import { PublicationsSection } from '@/pages/Publications/PublicationsSection';
+import { CertificationsSection } from '@/pages/Certifications/CertificationsSection';
 import { ContactSection } from '@/pages/Contact/ContactSection';
 
 export function MainLayout() {
@@ -20,6 +22,8 @@ export function MainLayout() {
         <ExperienceSection />
         <ProjectsSection />
         <EducationSection />
+        <PublicationsSection />
+        <CertificationsSection />
         <ContactSection />
         <Outlet />
       </main>
